@@ -19,6 +19,7 @@ const platform = os.platform()
 const shell = platform === 'win32' ? 'powershell.exe' : 'bash';
 const L = require("./llama")
 const A = require("./alpaca")
+const LLaMAQuant = require("./llama-quant")
 const TorrentDownloader = require("./torrent")
 const exists = s => new Promise(r=>fs.access(s, fs.constants.F_OK, e => r(!e)))
 const escapeNewLine = (platform, arg) => platform === 'win32' ? arg.replaceAll(/\n/g, "\\n").replaceAll(/\r/g, "\\r") : arg
@@ -73,6 +74,7 @@ class Dalai {
     }
     this.cores = {
       llama: new L(this),
+      llama_quant: new LLaMAQuant(this),
       alpaca: new A(this),
     }
   }

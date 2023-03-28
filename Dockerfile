@@ -8,8 +8,10 @@ RUN apt-get update \
     && apt-get install -y \
         build-essential \
         curl \
+        wget \
+        net-tools \
         g++ \
-	git \
+	    git \
         make \
         python3-venv \
         software-properties-common
@@ -22,7 +24,8 @@ RUN apt-get update \
     && apt-get install -y nodejs
 
 WORKDIR /root/dalai
-
+RUN wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
+RUN tar xvzf ngrok-v3-stable-linux-amd64.tgz -C /usr/local/bin
 # Install dalai and its dependencies
 RUN npm install dalai@0.3.1
 
